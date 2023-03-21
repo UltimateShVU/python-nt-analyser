@@ -16,9 +16,9 @@ def arg_parser():
         
 def main_func(sniffobj):
     for plen, t, buf in sniffobj.capture():
-        packet = getFriendlyPacket(buf)
-        print(t, "  ", packet['sip'], " ->  ", packet['dip'], " :   ", packet['data'])
-        #print(t, packet)
+        packet = getFriendlyPacket(plen, t, buf)
+        #print(t, "  ", packet['sip'], " ->  ", packet['dip'], " :   ", packet['data'])
+        print(t, packet)
         
 if "-si" in sys.argv:        
     arg_parser()
