@@ -13,9 +13,9 @@ def getFriendlyPacket(plen, t, buf):
     ip = eth.data
     print("Dkpt ip: \n", ip)
     print("\n\n\n")
-    packet_info = {'sip' : bytes2ip(ip.src),
-                   'dip' : bytes2ip(ip.dst),
-                   'data' : ip.data
+    packet_info = {'src_ip'  : bytes2ip(ip.src),
+                   'dst_ip'  : bytes2ip(ip.dst),
+                   'payload' : ip.data
     }
 #    ip = eth.data
 #    tcp = ip.data
