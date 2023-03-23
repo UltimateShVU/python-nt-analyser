@@ -68,7 +68,7 @@ def analyze_TCP_packet(ip_packet: dpkt.ip.IP, tcp_packet: dpkt.tcp.TCP) -> dict:
     
     ### SSH connection checking
     # internal IP-addresses - unexpected as default
-    if (dst_ip_port == SSH_PORT or SSH_PORT_ADDON):
+    if (dst_ip_port == SSH_PORT or dst_ip_port == SSH_PORT_ADDON):
         try:
             analyze_black_list[f"[SSH] {src_ip_addr}"] += 1
         except KeyError:
