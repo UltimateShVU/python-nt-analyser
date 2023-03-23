@@ -17,8 +17,20 @@ on:
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [ "main" ]
+    paths-ignore:
+      - '**/*.md'
+      - '**/*.txt'
+  workflow_run:
+    workflows: ["Build"]
+    types: [requested]
+    branches:
+      - 'fix-*'
+      - 'bug-*'
+      - 'feature-*'
+      - 'enhancement-*'
   schedule:
-    - cron: '41 6 * * 6'
+    # Every day in 11:30 and 22:00 (by NSK-Time)
+    - cron: '30 4,15 * * *'
 
 jobs:
   analyze:
