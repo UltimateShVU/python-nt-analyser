@@ -4,14 +4,15 @@ from pylibpcap      import get_iface_list, get_first_iface
 from pylibpcap.base import Sniff
 from analyze        import analyze_packet_verdict
 from analyze_defs   import SIGINT
-
-keep_running = 1
+from complex        import complexAnalysis, stop_analysis
 
 # SIGINT (CTRL+C) signal handling
 def helper_signal_handler(signum, frame):
     if (SIGINT == signum):
-        global keep_running
-        keep_running = 0
+        #global keep_running
+        #keep_running = 0
+        stop_analysis()
+        #sys.exit(0) 
 
 def main_parser_create():
     parser = argparse.ArgumentParser()
@@ -26,21 +27,10 @@ def main_parser_create():
 def main_capture_packets(sniff_obj) -> None:
     global keep_running
 
-    for plen, t, buf in sniff_obj.capture():
-        try:
-            if keep_running:  
-                packet = analyze_packet_verdict(plen, t, buf)
-                if packet:
-                    print(packet["verdict"], "|", packet["time"], "|", packet["payload"], "|", packet["description"], "|")
-            else:
-                break
-        except Exception:
-            print("\nError occured while packet analyzing:")
-            print(sys.exc_info())
-            continue
-    
-    if not keep_running:
-        sys.exit(0)
+    packets = (analyze_packet_verdict(plen, t, buf) for plen, t, buf in sniff_obj.capture())
+    complexAnalysis(packets)
+    #if not keep_running:
+    #    sys.exit(0)
 
 def main_loop(iface, of, c) -> None:
     try:
