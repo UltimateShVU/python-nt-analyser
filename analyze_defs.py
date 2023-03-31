@@ -5,6 +5,10 @@ SIGINT  = 2
 SSH_PORT = 22
 SSH_PORT_ADDON = 2222
 
+# definitions of http/https-ports
+HTTP_PORT  = 80
+HTTPS_PORT = 443
+
 # min. count of packets for ssh-connection
 SSH_NEW_CONN_PCTS = 8
 
