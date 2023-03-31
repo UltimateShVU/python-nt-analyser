@@ -9,28 +9,26 @@ from complex        import complexAnalysis, stop_analysis
 # SIGINT (CTRL+C) signal handling
 def helper_signal_handler(signum, frame):
     if (SIGINT == signum):
-        #global keep_running
-        #keep_running = 0
         stop_analysis()
-        #sys.exit(0) 
 
 def main_parser_create():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-iL', '--ifacelist', action='store_const', const=True, help='Get list of ifaces and exit') # Get list of ifaces and exit
-    parser.add_argument('-i', '--iface', nargs='?', help='Custom iface for sniffing') #Custom iface for sniffing
-    parser.add_argument('--nopcap', action='store_const', const=True, help='Don\'t create pcap file') #Don't create pcap file
-    parser.add_argument('-p', '--pcap', default='dump.pcap', help='Custom pcap-file to write to') #Custom pcap-file to write to
-    parser.add_argument('-c', '--count', type=int, default=-1, help='How many packets will be captured. When non provided, keep capturing until program closed') #How many packets should we capture? Default: INF
+    # Get list of ifaces and exit
+    parser.add_argument('-iL', '--ifacelist', action='store_const', const=True, help='Get list of ifaces and exit')
+    # Set custom iface for sniffing
+    parser.add_argument('-i', '--iface', nargs='?', help='Custom iface for sniffing')
+    # Don't create pcap file
+    parser.add_argument('--nopcap', action='store_const', const=True, help='Don\'t create pcap file')
+    # Set custom pcap-file to write traffic dump to it on the setted interface
+    parser.add_argument('-p', '--pcap', default='dump.pcap', help='Custom pcap-file to write to')
+    # How many packets should we capture? Default: INF
+    parser.add_argument('-c', '--count', type=int, default=-1, help='How many packets will be captured. When non provided, keep capturing until program closed')
 
     return parser
 
 def main_capture_packets(sniff_obj) -> None:
-    global keep_running
-
     packets = (analyze_packet_verdict(plen, t, buf) for plen, t, buf in sniff_obj.capture())
     complexAnalysis(packets)
-    #if not keep_running:
-    #    sys.exit(0)
 
 def main_loop(iface, of, c) -> None:
     try:
@@ -59,7 +57,7 @@ if __name__ == '__main__':
 
     if args.nopcap:
         pcap = ""
-    
+
     count = args.count
 
     main_loop(iface, pcap, count)
