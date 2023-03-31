@@ -43,12 +43,15 @@ def complexAnalysis(packets):
 
     for packet in packets:
         if not keep_running:          # Stop all threads and print results
-            for thread in func_threads:
-                thread.join()
-            for data in resulting_data:
-                print(data, "   :   ", resulting_data.get(data))
-            return
+            break
         if packet:
             for q in queues:          # Fill queues
                 a = packet.copy()
                 q.put(a)
+        
+    stop_analysis()               # When we sent all packets we need, wait until modules finish analysis
+    for thread in func_threads:
+        thread.join()
+    for data in resulting_data:
+        print(data, "   :   ", resulting_data.get(data))
+    return
