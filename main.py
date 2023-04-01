@@ -1,10 +1,10 @@
 import sys, signal
 import argparse
-from pylibpcap      import get_iface_list, get_first_iface
-from pylibpcap.base import Sniff
-from analyze        import analyze_packet_verdict
-from analyze_defs   import SIGINT
-from complex        import complexAnalysis, stop_analysis
+from pylibpcap       import get_iface_list, get_first_iface
+from pylibpcap.base  import Sniff
+from translator      import translate_packet
+from translator_defs import SIGINT
+from complex         import complexAnalysis, stop_analysis
 
 # SIGINT (CTRL+C) signal handling
 def helper_signal_handler(signum, frame):
@@ -27,7 +27,7 @@ def main_parser_create():
     return parser
 
 def main_capture_packets(sniff_obj) -> None:
-    packets = (analyze_packet_verdict(plen, t, buf) for plen, t, buf in sniff_obj.capture())
+    packets = (translate_packet(plen, t, buf) for plen, t, buf in sniff_obj.capture())
     complexAnalysis(packets)
 
 def main_loop(iface, of, c) -> None:
