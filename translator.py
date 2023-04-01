@@ -168,5 +168,5 @@ def translate_packet(plen, t, buf) -> dict:
     if packet_data:
         packet_data.update({"time": t})
 
-    print(packet_data)
+    #print(packet_data)
     return packet_data
