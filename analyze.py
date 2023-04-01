@@ -1,6 +1,6 @@
 import dpkt
-from   analyze_defs  import *
-from   helpers       import bytes2ip
+from   translator_defs import *
+from   helpers         import bytes2ip
 
 # @autor: Pavel Chernov (K1rch)
 # @brief: Analyze and mark traffic.

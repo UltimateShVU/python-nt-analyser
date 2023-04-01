@@ -9,6 +9,19 @@ SSH_PORT_ADDON = 2222
 HTTP_PORT  = 80
 HTTPS_PORT = 443
 
+# FTP port
+FTP_PORT = 21
+FTP_PORT_ADDON = 20
+
+# Telnet port
+TELNET_PORT = 23
+
+# TFTP port (by UDP)
+TFTP_PORT = 69
+
+# DNS port (by UDP)
+DNS_PORT  = 53
+
 # min. count of packets for ssh-connection
 SSH_NEW_CONN_PCTS = 8
 
