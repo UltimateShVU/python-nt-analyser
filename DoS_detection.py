@@ -2,7 +2,7 @@ from translator_defs    import MAX_PACK_PER_SECOND_IP, MAX_PACK_PER_SECOND_ALL
 from helpers            import get_keep_running_val
 
 def dos_detection(packet_queue, result_dict):    # Simple DoS-attack detection
-    time_connections = {}
+    time_connections = []
     danger_adresses = {}
     last_time = 0
     
@@ -17,15 +17,13 @@ def dos_detection(packet_queue, result_dict):    # Simple DoS-attack detection
                 src = packet['IP_DATA'][0]
                 time = packet['time']
                 
-                time_connections.setdefault(time, list())
-                time_connections[time].append(src)
+                time_connections.append(src)
                 
                 if time > last_time:
                     p_overall = 0
                     p_per_ip = {}
-                    ip_per_second = time_connections.get(last_time, list())
-                    for ip in set(ip_per_second):
-                        c = ip_per_second.count(ip)
+                    for ip in set(time_connections):
+                        c = time_connections.count(ip)
                         p_overall += c
                         p_per_ip[ip] = c
                     dos_flag = False
@@ -36,7 +34,8 @@ def dos_detection(packet_queue, result_dict):    # Simple DoS-attack detection
                             danger_adresses[ip] = danger_adresses.setdefault(ip, 0) + p_per_ip[ip]
                     if not dos_flag and p_overall > MAX_PACK_PER_SECOND_ALL:
                         print("WARNING! Probable DDoS-attack detected")
-                    last_time = time    
+                    last_time = time 
+                    time_connections = []   
                 
         elif not get_keep_running_val():
             result_data = "Following IP's were marked as probably DoS :" if len(danger_adresses) else "No dangerous IP's were detected"
