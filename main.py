@@ -4,7 +4,8 @@ from pylibpcap       import get_iface_list, get_first_iface
 from pylibpcap.base  import Sniff
 from translator      import translate_packet
 from translator_defs import SIGINT
-from complex         import complexAnalysis, stop_analysis
+from complex         import complexAnalysis
+from helpers         import stop_analysis
 
 # SIGINT (CTRL+C) signal handling
 def helper_signal_handler(signum, frame):

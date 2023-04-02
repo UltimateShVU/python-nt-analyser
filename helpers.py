@@ -1,6 +1,14 @@
 import ipaddress
 import dpkt
 
+keep_running = 1
+def get_keep_running_val() -> int:
+    return keep_running
+
+def stop_analysis():
+    global keep_running
+    keep_running = 0
+
 def __bytes2ip(bytestring):
     return str(ipaddress.IPv4Address(bytestring))
 
