@@ -25,11 +25,6 @@ DNS_PORT  = 53
 # min. count of packets for ssh-connection
 SSH_NEW_CONN_PCTS = 8
 
-# enum for analyze.py module
-ANALYZE_VERDICT_NORMAL  = 0
-ANALYZE_VERDICT_INVALID = 1
-ANALYZE_VERDICT_WARN    = 2
-
 # DoS warning timers
 MAX_PACK_PER_SECOND_IP  = 10
 MAX_PACK_PER_SECOND_ALL = 100
