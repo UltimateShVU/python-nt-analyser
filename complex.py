@@ -30,7 +30,7 @@ def packet_sequence_info(result: dict):
 
 def complexAnalysis(packets):
     # add your complex analysis functions here
-    analysis_funcs = [countPackets, dos_detection, dns_spoof_detect, ]
+    analysis_funcs = [countPackets, dos_detection, dns_spoof_detect, arp_poison_detect]
     queues = list()
     resulting_data = dict()
     func_threads = list()

@@ -21,8 +21,8 @@ def arp_poison_detect(packet_queue : Queue, result_dict : dict):
                     continue
 
                 if "reply" == packet["type"]:
-                    arp_cache = translator_get_arp_cache(None)
-                    if (arp_cache[payload.tpa] != payload.tha and payload.tpa in arp_cache):
+                    arp_cache = translator_get_arp_cache()
+                    if (payload.tpa in arp_cache and arp_cache[payload.tpa] != payload.tha):
                         print("WARNING !!! Duplicate IP addresses in ARP-table detected")
                         result_dict["ARP poison Detection"] = \
                                     f"Duplicate IP addresses detected: {inet_ntoa(payload.tpa)} is assigned to {add_colons_to_mac(hexlify(arp_cache[payload.tha]))}"
