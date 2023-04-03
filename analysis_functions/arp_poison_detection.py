@@ -1,5 +1,4 @@
 from queue      import Queue
-from socket     import inet_ntoa
 from translator import translator_get_arp_cache, translator_update_arp_cache
 from helpers    import get_keep_running_val, add_colons_to_mac
 from binascii   import hexlify
