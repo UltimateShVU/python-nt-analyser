@@ -6,7 +6,7 @@ from helpers    import get_keep_running_val, add_colons_to_mac
 from binascii   import hexlify
 from dpkt       import arp
 
-def apr_poison_detect(packet_queue : Queue, result_dict : dict):
+def arp_poison_detect(packet_queue : Queue, result_dict : dict):
     result_dict["ARP poison Detection"] = "ARP-attack not detected"
 
     while True:
