@@ -9,7 +9,7 @@ def arp_poison_detect(packet_queue : Queue, result_dict : dict):
 
     while True:
         if not get_keep_running_val():
-            print(f"<apr_poison_detect> function is now stopping, packets in queue: {packet_queue.qsize()} wait for the end of packet sequence processing !")
+            print(f"<arp_poison_detect> function is now stopping, packets in queue: {packet_queue.qsize()} wait for the end of packet sequence processing !")
 
         if not packet_queue.empty():
             packet = packet_queue.get()
