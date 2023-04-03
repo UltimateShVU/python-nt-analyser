@@ -1,4 +1,3 @@
-from time       import sleep
 from queue      import Queue
 from socket     import inet_ntoa
 from translator import translator_get_arp_cache, translator_update_arp_cache
