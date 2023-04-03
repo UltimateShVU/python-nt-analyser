@@ -1,9 +1,5 @@
-from time       import sleep
 from queue      import Queue
-from socket     import inet_ntoa
-from translator import translator_get_arp_cache, translator_update_arp_cache
-from helpers    import get_keep_running_val, add_colons_to_mac
-from binascii   import hexlify
+from helpers    import get_keep_running_val
 import                 dpkt
 
 def dns_spoof_detect(packet_queue : Queue, result_dict : dict):
