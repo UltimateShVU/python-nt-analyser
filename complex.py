@@ -3,7 +3,7 @@ from queue          import Queue
 from helpers        import get_keep_running_val, stop_analysis
 
 from analysis_functions.DoS_detection          import dos_detection
-from analysis_functions.arp_poison_detection   import apr_poison_detect
+from analysis_functions.arp_poison_detection   import arp_poison_detect
 from analysis_functions.dns_spoofing_detection import dns_spoof_detect
 
 # Example function
