@@ -1,6 +1,5 @@
 from translator_defs import MAX_PACK_PER_SECOND_IP, MAX_PACK_PER_SECOND_ALL 
 from helpers         import get_keep_running_val
-from time            import sleep
 
 # Simple TCP-check
 def __check_tcp_traffic(tcp_packet):
